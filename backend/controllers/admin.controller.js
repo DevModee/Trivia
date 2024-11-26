@@ -23,3 +23,17 @@ export const getAdmins = async (req, res) => {
   }
 };
 
+export const deleteAdmin = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const admin = await Admin.findByIdAndDelete(id);
+    if (!admin) {
+      return res.status(400).json({ message: 'Administrador no encontrado' });
+    }
+    res.status(200).json({ message: 'Administrador eliminado', admin });
+  } catch (error) {
+    console.error('Error al eliminar administrador:', error);
+    res.status(500).json({ message: 'Error al eliminar el Administrador', error });
+  }
+};
