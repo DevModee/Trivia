@@ -1,4 +1,5 @@
 import Admin from "../models/admin.model.js";
+
 export const registerAdmin = async (req, res) => {
   const { username, password } = req.body;
 
@@ -11,3 +12,14 @@ export const registerAdmin = async (req, res) => {
     res.status(400).json({ message: 'Error al crear el Administrador', error });
   }
 };
+
+export const getAdmins = async (req, res) => {
+  try {
+    const admins = await Admin.find();
+    res.status(200).json(admins);
+  } catch (error) {
+    console.error('Error al obtener los administradores', error);
+    res.status(500).json({ message: 'Error al obtener los administradores' });
+  }
+};
+
