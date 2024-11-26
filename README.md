@@ -1,11 +1,11 @@
 # Trivia
-* Proyecto de Trivia creado con el stack MERN
+* Trivia project created with the MERN stack
 
 
-# Documentacion inicial para levantar el proyecto, con estos simples comandos vas a poder prender Trivia, incluyendo backend y frontend
+# Initial documentation to set up the project. With these simple commands, you will be able to start Trivia, including both backend and frontend.
 
-* Levantar backend 
-- npm start (El archivo 'package.json' tiene el script necesario para iniciar el proyecto)
+* Start backend 
+- npm start (The 'package.json' file contains the necessary script to start the project)
 
-* Levantar frontend
+* Start frontend
 - npm run dev 
