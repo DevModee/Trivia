@@ -1,7 +1,7 @@
 import express from 'express';
 import { config } from 'dotenv';
 import connectDB from './config/db.js';
-import indexRoutes from './routes/index.js';
+import indexRoutes from './routes/Admin.routes.js';
 
 config();
 connectDB();
