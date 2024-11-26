@@ -2,6 +2,7 @@
   "name": "Trivia",
   "version": "1.0",
   "main": "app.js",
+  "type": "module",
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
