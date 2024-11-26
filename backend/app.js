@@ -1,7 +1,7 @@
 import express from 'express';
 import { config } from 'dotenv';
 import connectDB from './config/db.js';
-import indexRoutes from './routes/Admin.routes.js';
+import adminRoutes from "./routes/admin.routes.js"
 
 config();
 connectDB();
@@ -9,9 +9,9 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-app.use('/api', indexRoutes);
+app.use('/api', adminRoutes);
 
-const PUERTO = process.env.PUERTO || 5000;
-app.listen(PUERTO, () => {
-    console.log(`Trivia corriendo en el puerto ${PUERTO}`)
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Trivia corriendo en http://localhost:${PORT}`)
 });
