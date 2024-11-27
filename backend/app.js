@@ -13,5 +13,5 @@ app.use('/api', adminRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Trivia corriendo en http://localhost:${PORT}`)
+  console.log(`Trivia running on http://localhost:${PORT}`)
 });

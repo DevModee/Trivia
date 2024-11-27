@@ -6,10 +6,9 @@ export const registerAdmin = async (req, res) => {
   try {
     const admin = new Admin({ username, password });
     await admin.save();
-    res.status(201).json({ message: 'Administrador creado', admin });
+    res.status(201).json({ message: 'Created', admin });
   } catch (error) {
-    console.error('Error al crear administrador:', error);
-    res.status(400).json({ message: 'Error al crear el Administrador', error });
+    res.status(400).json({ message: 'Error on create admin', error });
   }
 };
 
@@ -18,8 +17,7 @@ export const getAdmins = async (req, res) => {
     const admins = await Admin.find();
     res.status(200).json(admins);
   } catch (error) {
-    console.error('Error al obtener los administradores', error);
-    res.status(500).json({ message: 'Error al obtener los administradores' });
+    res.status(500).json({ message: 'Error getting admins' });
   }
 };
 
@@ -29,11 +27,10 @@ export const deleteAdmin = async (req, res) => {
   try {
     const admin = await Admin.findByIdAndDelete(id);
     if (!admin) {
-      return res.status(400).json({ message: 'Administrador no encontrado' });
+      return res.status(400).json({ message: 'Admin not found' });
     }
-    res.status(200).json({ message: 'Administrador eliminado', admin });
+    res.status(200).json({ message: 'Success, admin deleted: ', admin });
   } catch (error) {
-    console.error('Error al eliminar administrador:', error);
-    res.status(500).json({ message: 'Error al eliminar el Administrador', error });
+    res.status(500).json({ message: 'Error on delete admin: ', error });
   }
 };
