@@ -3,7 +3,7 @@ import { registerAdmin, getAdmins, deleteAdmin } from '../controllers/admin.cont
 
 const router = express.Router();
 
-router.post('/register', registerAdmin);
+router.post('/admins/register', registerAdmin);
 router.get('/admins', getAdmins);
 router.delete('/admins/:id', deleteAdmin);
 
