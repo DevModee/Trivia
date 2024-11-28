@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/admins/register', registerAdmin);
 router.post('/login', loginAdmin);
 router.get('/admins', getAdmins);
-router.delete('/admins/:id', deleteAdmin);
+router.put('/update-password', updatePassword);
 
 
 export default router; 
