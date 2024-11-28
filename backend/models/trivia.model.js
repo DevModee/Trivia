@@ -11,6 +11,8 @@ const questionSchema = new Schema({
         type: Boolean,
         required: true,
     },
+}, {
+    timestamps: true
 });
 
 const triviaSchema = new Schema({
