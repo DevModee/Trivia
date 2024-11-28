@@ -26,6 +26,11 @@ const triviaSchema = new Schema({
     type: String,
   },
   preguntas: [questionSchema],
+  adminId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Admin',
+    required: true,
+  }
 }, {
   timestamps: true
 });
