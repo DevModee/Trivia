@@ -59,3 +59,26 @@ export const deleteAdmin = async (req, res) => {
     res.status(500).json({ message: 'Error on delete admin: ', error });
   }
 };
+
+export const updatePassword = async (req, res) => {
+  const { username, oldPassword, newPassword } = req.body;
+
+  try {
+    const admin = await Admin.findOne({ username });
+    if (!admin) {
+      return res.status(404).json({ message: "Admin not found" });
+    }
+
+    const isMatch = await bcrypt.compare(oldPassword, admin.password);
+    if (!isMatch) {
+      res.status(400).json({ message: "Old password is incorrect" });
+    }
+
+    admin.password = hashedNewPassword;
+    await admin.save();
+
+    res.status(200).json({ message: "Password updated succesfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating password", error });
+  }
+};

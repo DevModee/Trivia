@@ -4,9 +4,9 @@ import { registerAdmin, getAdmins, deleteAdmin, loginAdmin } from '../controller
 const router = express.Router();
 
 router.post('/admins/register', registerAdmin);
-router.post('/login', loginAdmin);
+router.post('/admins/login', loginAdmin);
 router.get('/admins', getAdmins);
-router.delete('/admins/:id', deleteAdmin);
+router.put('/admins/update-password', updatePassword);
 
 
 export default router; 
