@@ -3,14 +3,18 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const questionSchema = new Schema({
-  text: {
+  question: {
     type: String,
     required: true,
   },
-  value: {
-    type: Boolean,
+  options: {
+    type: [String],
     required: true,
   },
+  correctAnswer: {
+    type: String,
+    required: true,
+  }
 });
 
 const triviaSchema = new Schema({

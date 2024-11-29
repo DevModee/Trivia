@@ -1,5 +1,5 @@
 import express from 'express';
-import { registerAdmin, getAdmins, deleteAdmin, loginAdmin } from '../controllers/admin.controller.js';
+import { registerAdmin, getAdmins, deleteAdmin, loginAdmin, updatePassword } from '../controllers/admin.controller.js';
 
 const router = express.Router();
 
