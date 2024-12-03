@@ -53,3 +53,31 @@ export const getAllPlayers = async (req, res) => {
         res.status(500).json({ message: "Error fetching users", error });
     }
 };
+
+export const getPlayerById = async (req, res) => {
+    const { user_id } = req.params;
+
+    try {
+        const player = await Player.findById(user_id);
+        if (!player) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching user", error });
+    }
+};
+
+export const deletePlayer = async (req, res) => {
+    const { player_id } = req.params;
+
+    try {
+        const deletedPlayer = await Player.findByIdAndDelete(player_id);
+        if (!deletedPlayer) {
+            return res.status(404).json({ message: "Player not found" });
+        }
+        res.status(200).json({ message: "Player deleted successfully", player: deletedPlayer });
+    } catch (error) {
+        res.status(500).json({ message: "Error deleting player", error });
+    }
+};
