@@ -55,10 +55,10 @@ export const getAllPlayers = async (req, res) => {
 };
 
 export const getPlayerById = async (req, res) => {
-    const { user_id } = req.params;
+    const { player_id } = req.params;
 
     try {
-        const player = await Player.findById(user_id);
+        const player = await Player.findById(player_id);
         if (!player) {
             return res.status(404).json({ message: "User not found" });
         }
