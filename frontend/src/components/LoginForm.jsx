@@ -14,14 +14,14 @@ const LoginForm = () => {
     try {
       const apiUrl = process.env.REACT_APP_ADMIN_API_URL;
 
-      const reponse = await axios.post(`${apiUrl}/admin`, {
+      const response = await axios.post(`${apiUrl}/admin`, {
         username: values.username,
         password: values.password,
       });
 
-      console.log("Login successfully:", reponse.data);
+      console.log("Login successfully:", response.data);
 
-      localStorage.setItem("adminToken", reponse.data.token);
+      localStorage.setItem("adminToken", response.data.token);
 
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);
