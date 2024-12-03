@@ -1,6 +1,6 @@
 import { useState } from "react"
-import axios from "axios";
 import InputText from "./InputText"
+import { adminLogin } from "../api/AdminApi";
 
 const LoginForm = () => {
   const [values, setValues] = useState({
@@ -12,16 +12,10 @@ const LoginForm = () => {
 
   const handleLogin = async () => {
     try {
-      const apiUrl = process.env.REACT_APP_ADMIN_API_URL;
 
-      const reponse = await axios.post(`${apiUrl}/admin`, {
-        username: values.username,
-        password: values.password,
-      });
+      const response = await adminLogin(values.username, values.password)
+      console.log("response: ", response);
 
-      console.log("Login successfully:", reponse.data);
-
-      localStorage.setItem("adminToken", reponse.data.token);
 
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);
