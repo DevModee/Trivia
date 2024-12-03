@@ -3,10 +3,10 @@ import { registerAdmin, getAdmins, deleteAdmin, loginAdmin, updatePassword } fro
 
 const router = express.Router();
 
-router.post('/admins/register', registerAdmin);
-router.post('/admins/login', loginAdmin);
-router.get('/admins', getAdmins);
-router.put('/admins/update-password', updatePassword);
+router.post('/register', registerAdmin);
+router.post('/login', loginAdmin);
+router.get('/', getAdmins);
+router.put('/update-password', updatePassword);
 
 
 export default router; 

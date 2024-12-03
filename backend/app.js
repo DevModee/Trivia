@@ -19,7 +19,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use('/api', adminRoutes);
+app.use('/api/admin', adminRoutes);
 app.use('/api', triviaRoutes)
 app.use('/api/players', playerRoutes);
 
