@@ -7,7 +7,7 @@ router.post("/register", registerPlayer);
 router.post("/login", loginPlayer);
 router.get("/", getAllPlayers);
 router.delete("/:player_id", deletePlayer);
-router.get("/:player_id,", getPlayerById);
+router.get("/:player_id", getPlayerById);
 router.put("/:player_id", updatePlayer)
 
 export default router;
