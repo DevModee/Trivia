@@ -21,7 +21,7 @@ const LoginForm = () => {
 
       console.log("Login successfully:", reponse.data);
 
-      localStorage.setItem("adminToken", response.data.token);
+      localStorage.setItem("adminToken", reponse.data.token);
 
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);
