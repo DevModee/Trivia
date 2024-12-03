@@ -88,7 +88,7 @@ export const updatePlayer = async (req, res) => {
 
     try {
         const player = await Player.findById(player_id);
-        if (!user) {
+        if (!player) {
             return res.status(404).json({ message: "Player not found" });
         }
 
@@ -99,7 +99,7 @@ export const updatePlayer = async (req, res) => {
             player.password = hashedPassword;
         }
 
-        await user.save();
+        await player.save();
         res.status(200).json({ message: "Player updated successfully", json });
     } catch (error) {
         res.status(500).json({ message: "Error updating player", error });
