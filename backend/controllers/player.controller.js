@@ -81,3 +81,27 @@ export const deletePlayer = async (req, res) => {
         res.status(500).json({ message: "Error deleting player", error });
     }
 };
+
+export const updatePlayer = async (req, res) => {
+    const { player_id } = req.params;
+    const { username, password } = req.body;
+
+    try {
+        const player = await Player.findById(player_id);
+        if (!user) {
+            return res.status(404).json({ message: "Player not found" });
+        }
+
+        if (username) player.username = username;
+
+        if (password) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            player.password = hashedPassword;
+        }
+
+        await user.save();
+        res.status(200).json({ message: "Player updated successfully", json });
+    } catch (error) {
+        res.status(500).json({ message: "Error updtign player", error });
+    }
+};
