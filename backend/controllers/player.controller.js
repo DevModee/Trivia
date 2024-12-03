@@ -19,7 +19,7 @@ export const registerPlayer = async (req, res) => {
 
         await newPlayer.save();
 
-        res.status(201).json({ message: "User registered successfully", user: newUser });
+        res.status(201).json({ message: "User registered successfully", player: newPlayer });
     } catch (error) {
         res.status(500).json({ message: "Error registering user", error });
     }
