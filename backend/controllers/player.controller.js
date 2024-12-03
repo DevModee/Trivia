@@ -100,7 +100,7 @@ export const updatePlayer = async (req, res) => {
         }
 
         await player.save();
-        res.status(200).json({ message: "Player updated successfully", json });
+        res.status(200).json({ message: "Player updated successfully", player });
     } catch (error) {
         res.status(500).json({ message: "Error updating player", error });
     }
