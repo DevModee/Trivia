@@ -1,14 +1,39 @@
 import Admin from "../models/admin.model.js";
+import bcrypt from "bcrypt";
 
 export const registerAdmin = async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const admin = new Admin({ username, password });
+    const salt = await bcrypt.getSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
+
+    const admin = new Admin({ username, password: hashedPassword });
     await admin.save();
+
     res.status(201).json({ message: 'Created', admin });
   } catch (error) {
     res.status(400).json({ message: 'Error on create admin', error });
+  }
+};
+
+export const loginAdmin = async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const admin = await Admin.findOne({ username });
+    if (!admin) {
+      return res.status(400).json({ message: "Invalid username or password" });
+    }
+
+    const isMatch = await bcrypt.compare(password, admin.password);
+    if (!isMatch) {
+      res.status(400).json({ message: "Invalid username or password" });
+    }
+
+    res.status(200).json({ message: "Login succesful", admin });
+  } catch (error) {
+    res.status(500).json({ message: "Error during login", error });
   }
 };
 
@@ -32,5 +57,28 @@ export const deleteAdmin = async (req, res) => {
     res.status(200).json({ message: 'Success, admin deleted: ', admin });
   } catch (error) {
     res.status(500).json({ message: 'Error on delete admin: ', error });
+  }
+};
+
+export const updatePassword = async (req, res) => {
+  const { username, oldPassword, newPassword } = req.body;
+
+  try {
+    const admin = await Admin.findOne({ username });
+    if (!admin) {
+      return res.status(404).json({ message: "Admin not found" });
+    }
+
+    const isMatch = await bcrypt.compare(oldPassword, admin.password);
+    if (!isMatch) {
+      res.status(400).json({ message: "Old password is incorrect" });
+    }
+
+    admin.password = hashedNewPassword;
+    await admin.save();
+
+    res.status(200).json({ message: "Password updated succesfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating password", error });
   }
 };
