@@ -1,5 +1,6 @@
 import Trivia from "../models/trivia.model.js"
 import Admin from "../models/admin.model.js"
+import mongoose from "mongoose";
 
 export const createTrivia = async (req, res) => {
   const { adminId, title, description, preguntas, activaHasta } = req.body;
@@ -10,8 +11,8 @@ export const createTrivia = async (req, res) => {
 
   try {
     const admin = await Admin.findById(adminId);
-    if (!admin) {
-      return res.status(401).json({ message: "Unauthorized: Invalid admin ID" });
+    if (!mongoose.Types.ObjectId.isValid(adminId)) {
+      return res.status(400).json({ message: "Invalid admin ID format" });
     }
 
     const trivia = new Trivia({ adminId, title, description, preguntas, activaHasta });
