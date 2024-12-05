@@ -20,7 +20,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/api/admin', adminRoutes);
-app.use('/api', triviaRoutes)
+app.use('/api/trivia', triviaRoutes)
 app.use('/api/players', playerRoutes);
 
 const PORT = process.env.PORT || 5000;
