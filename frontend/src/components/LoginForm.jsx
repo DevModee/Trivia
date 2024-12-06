@@ -1,5 +1,6 @@
-import { useState } from "react"
-import InputText from "./InputText"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import InputText from "./InputText";
 import { adminLogin } from "../api/AdminApi";
 
 const LoginForm = () => {
@@ -10,12 +11,16 @@ const LoginForm = () => {
 
   const [errorMessage, setErrorMessage] = useState(null);
 
+  const navigate = useNavigate();
+
   const handleLogin = async () => {
     try {
 
-      const response = await adminLogin(values.username, values.password)
-      console.log("response: ", response);
-
+      const response = await adminLogin(values.username, values.password);
+      if (response.status === 200) {
+        console.log("response: ", response);
+        navigate("/admin-panel");
+      }
 
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);
