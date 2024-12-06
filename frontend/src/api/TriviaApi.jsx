@@ -1,21 +1,22 @@
 import axios from "axios";
+import { config } from "../utils/apiConfig";
 
 export const fetchAllTrivias = async () => {
-  return axios.get(`${BASE_URL}/trivia/`);
+  return axios.get(`${config.triviaAPI}`);
 };
 
 export const fetchTriviaById = async (triviaId) => {
-  return axios.get(`${BASE_URL}/trivia/${triviaId}`);
+  return axios.get(`${config.triviaAPI}/${triviaId}`);
 };
 
 export const createTrivia = async (triviaData) => {
-  return axios.post(`${BASE_URL}/trivia`, triviaData);
+  return axios.post(`${config.triviaAPI}`, triviaData);
 };
 
 export const updateTrivia = async (triviaId, triviaData) => {
-  return axios.put(`${BASE_URL}/trivia/${triviaId}`, triviaData);
+  return axios.put(`${config.triviaAPI}/${triviaId}`, triviaData);
 };
 
 export const deleteTrivia = async (triviaId) => {
-  return axios.delete(`${BASE_URL}/trivia/${triviaID}`);
+  return axios.delete(`${config.triviaAPI}/${triviaId}`);
 }

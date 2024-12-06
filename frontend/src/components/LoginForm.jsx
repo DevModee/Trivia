@@ -17,9 +17,9 @@ const LoginForm = () => {
     try {
 
       const response = await adminLogin(values.username, values.password);
-      if (response.status === 200) {
+      if (response.status === 200) {        
         console.log("response: ", response);
-        navigate("/admin-panel");
+        navigate(`/admin-panel/${response.data.admin._id}`);
       }
 
     } catch (error) {
