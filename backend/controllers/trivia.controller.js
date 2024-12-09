@@ -1,6 +1,7 @@
 import Trivia from "../models/trivia.model.js"
 import Admin from "../models/admin.model.js"
 import mongoose from "mongoose";
+import moment from "moment"
 
 export const createTrivia = async (req, res) => {
   const { adminId, title, description, preguntas, activaHasta } = req.body;
